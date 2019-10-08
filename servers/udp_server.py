@@ -15,4 +15,3 @@ while True:
 
     to_send = data.capitalize()
     sock.sendto(to_send, addr)
-

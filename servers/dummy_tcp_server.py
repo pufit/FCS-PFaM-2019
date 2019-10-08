@@ -1,7 +1,7 @@
 
 import socket
 
-IP = '0.0.0.0'
+IP = '0.0.0.0'  # IPv4
 PORT = 8956
 BUFF_SIZE = 1024
 

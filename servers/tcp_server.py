@@ -1,5 +1,6 @@
 
 import socket
+import time
 
 IP = '0.0.0.0'
 PORT = 8956
@@ -36,3 +37,4 @@ while True:
                 pass
             except ConnectionResetError:
                 connections.remove((conn, addr))
+    time.sleep(0.01)

@@ -2,7 +2,7 @@ import socket
 import struct
 
 BUFF_SIZE = 1024
-MCAST_GRP = '224.1.1.1'
+MCAST_GRP = '228.0.0.5'
 MCAST_PORT = 5007
 
 
