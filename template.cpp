@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 // ...
 // some other includes
@@ -16,10 +17,18 @@ int FindSquare(int value) {
     return value * value;
 }
 
+void UnitTest() {
+    {
+        assert(FindSquare(4) == 10);
+    }
+}
+
 int main() {
-    int value = ReadInput();
-    int answer = FindSquare(value);
-    PrintOutput(answer);
+    // int value = ReadInput();
+    // int answer = FindSquare(value);
+    // PrintOutput(answer);
+
+    UnitTest();
 
     return 0;
 }
