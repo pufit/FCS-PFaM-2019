@@ -3,8 +3,8 @@
 Кодстайл:
 http://google.github.io/styleguide/cppguide.html
 
-[Шаблон для написания задач](https://github.com/pufit/FCS-PFaM-2019/template.cpp)
+[Шаблон для написания задач](template.cpp)
 
-[Немного про систему ревью](https://github.com/pufit/FCS-PFaM-2019/review.md)
+[Немного про систему ревью](review.md)
 
-[Полезные ссылки](https://github.com/pufit/FCS-PFaM-2019/useful_links.md)
+[Полезные ссылки](useful_links.md)
