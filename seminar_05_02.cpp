@@ -93,3 +93,31 @@ int main()
     std::cout << element << '\n';
     std::cout << *element << '\n';
 }
+
+// Про измерение времени работы куска кода:
+
+int main() {
+    const int size = 1000000;
+    std::set<int> set;
+    std::unordered_set<int> unorderedSet;
+
+    auto start = std::chrono::steady_clock::now();
+    for (int number = 0; number < size; ++number) {
+        set.insert(number);
+    }
+    auto end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> diff = end - start;
+    std::cout << "Time to fill a set of " 
+        << size << " ints : " << diff.count() << " s\n";
+    
+    start = std::chrono::steady_clock::now();
+    for (int number = 0; number < size; ++number) {
+        unorderedSet.insert(number);
+    }
+    end = std::chrono::steady_clock::now();
+    diff = end - start;
+    std::cout << "Time to fill an unordered_set of " 
+        << size << " ints : " << diff.count() << " s\n";
+    
+    return 0;
+}
