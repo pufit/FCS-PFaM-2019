@@ -6,6 +6,30 @@
 
 class TextGenerator {
 public:
+    TextGenerator() = default;
+
+    TextGenerator(const TextGenerator& rhs)
+            : words_(rhs.words_), model_(rhs.model_) {
+        std::cout << "Copy constructor\n";
+    }
+
+    TextGenerator(TextGenerator&& rhs)
+            : words_(std::move(rhs.words_)), model_(std::move(rhs.model_)) {
+        std::cout << "Move constructor\n";
+    }
+
+    void Swap(TextGenerator& rhs) {
+        std::swap(words_, rhs.words_);
+        std::swap(model_, rhs.model_);
+    }
+
+    TextGenerator& operator=(TextGenerator rhs) {
+        Swap(rhs);
+        return *this;
+    }
+
+    ~TextGenerator() = default;
+
     void ReadText() {
         std::string word;
         while (std::cin >> word) {
@@ -14,15 +38,18 @@ public:
     }
 
     void Train() {
+        std::unordered_map<
+            std::string,
+            std::unordered_map<std::string, int>> counters;
         if (words_.empty()) {
             throw std::runtime_error("No data for train.");
         }
         for (size_t i = 0; i < words_.size() - 1; ++i) {
             const auto& firstWord = words_[i];
             const auto& secondWord = words_[i + 1];
-            ++counters_[firstWord][secondWord];
+            ++counters[firstWord][secondWord];
         }
-        for (const auto& [firstWord, secondWords] : counters_) {
+        for (const auto& [firstWord, secondWords] : counters) {
             auto cmp = [](const auto& lhs, const auto& rhs) {
                 return lhs.second < rhs.second;
             };
@@ -46,15 +73,16 @@ private:
     }
 
     std::vector<std::string> words_;
-    std::unordered_map<
-        std::string,
-        std::unordered_map<std::string, int>> counters_;
     std::unordered_map<std::string, std::string> model_;
 };
 
 int main() {
     TextGenerator generator;
+    TextGenerator generator2;
     generator.ReadText();
     generator.Train();
     generator.GenerateText("a", 100);
+
+    // generator2 = generator;
+    generator2 = std::move(generator);
 }
